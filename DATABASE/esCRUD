@@ -1,0 +1,71 @@
+Inserisci un corso di Laurea "Magistrale in Informatica indirizzo Data Science" appartenente al dipartimento di Matematica
+Inserisci uno studente iscritto al nuovo corso
+Modificate la mail dello studente
+Iscrivete lo studente a un esame
+Eliminate il corso di laurea, lo studente e la sua iscrizione a un esame.
+
+BONUS:
+Nel completare gli inserimenti valuta di aggiungere anche un corso, un docente e un esame al corso di laurea appena creato
+
+---------------------------------------------
+
+INSERT INTO degrees (department_id, name, level, address, email, website)
+VALUES (5, 'Magistrale in Informatica indirizzo Data Science', 'magistrale', 'Strada Bianca 97', 'datascience@degree.it', 'www.datascience.it');
+
+
+INSERT INTO students (
+  degree_id,
+  name,
+  surname,
+  date_of_birth,
+  fiscal_code,
+  enrolment_date,
+  registration_number,
+  email
+)
+VALUES (
+  76,
+  'Chiara',
+  'Rossi',
+  '2002-05-14',
+  'RSSCHR02E54H501Z',
+  '2026-01-28',
+  '625033',
+  'chiara.rossi@studenti.it'
+);
+
+
+UPDATE students
+SET email = 'chiara.rossi2@studenti.it'
+WHERE email = 'chiara.rossi@studenti.it';
+
+INSERT INTO exam_student (exam_id, student_id, vote)
+VALUES (6585, 5001, 18);
+
+DELETE FROM exam_student
+WHERE student_id = 5001;
+DELETE FROM students
+WHERE id = 5001;
+DELETE FROM degrees
+WHERE id = 76;
+(o CASCADE)
+
+
+INSERT INTO teachers (name, surname, phone, email, office_address, office_number)
+VALUES ('Marco', 'Bianchi', '+39 345 678 901', 'marco.bianchi@university.it', 'Strada Bianca 97', '12')
+
+INSERT INTO courses (degree_id, name, description, period, year, cfu, website)
+VALUES (
+  76,
+  'Machine Learning',
+  '"Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'II semestre',
+  2,
+  6,
+  'www.datascience.it/machinelearning'
+)
+
+
+
+
+
